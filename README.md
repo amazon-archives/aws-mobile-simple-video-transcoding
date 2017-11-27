@@ -416,7 +416,7 @@ If you plan to use this to host a production website, then you should scope this
 ### 6. Build Mobile App
 
 #### Open the Project
-Start [Android Studio](https://developer.android.com/studio/index.html). Choose "Open an existing Android Studio project" and select the "android/VideoDemo/VideoDemo.iml" file.
+Start [Android Studio](https://developer.android.com/studio/index.html). Choose "Import project (Gradle, Eclipse ADT, etc.)" and select the "android/VideoDemo/build.gradle" file.
 
 #### Run the App
 
