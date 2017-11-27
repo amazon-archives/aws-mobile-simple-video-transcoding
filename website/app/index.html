@@ -1,0 +1,51 @@
+<!doctype html>
+<!--
+# Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+-->
+
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>website</title>
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.154.0.min.js"></script>
+    <!-- build:js scripts/aws-config.js -->
+    <script src="scripts/aws-config.js"></script>
+    <!-- endbuild -->
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+  </head>
+  <body onLoad="bodyOnLoad();">
+    <div class="main">
+      <div class="error" id="error"></div>
+      <div class="coming-soon" id="coming-soon"></div>
+      <div class="now-playing" id="now-playing"></div>
+      <div>
+        <video class="video" id="video" controls loop/>
+      </div>
+      <div class="contents" id="contents"></div>
+    </div>
+  </body>
+</html>

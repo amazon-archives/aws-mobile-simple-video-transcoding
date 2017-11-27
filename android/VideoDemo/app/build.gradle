@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+
+/*
+# Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+*/
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion '27'
+    defaultConfig {
+        applicationId "com.amazonaws.videodemo.videodemo"
+        minSdkVersion 23
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:27.0.1'
+    compile 'com.android.support:design:27.0.1'
+    compile 'com.devbrackets.android:exomedia:4.0.3'
+
+    // Mobile Client for initializing the SDK
+    compile('com.amazonaws:aws-android-sdk-mobile-client:2.6.+@aar') { transitive = true; }
+
+    // Cognito UserPools for SignIn
+    compile 'com.android.support:support-v4:27.0.1'
+    compile('com.amazonaws:aws-android-sdk-auth-userpools:2.6.+@aar') { transitive = true; }
+
+    // Sign in UI Library
+    compile('com.amazonaws:aws-android-sdk-auth-ui:2.6.+@aar') { transitive = true; }
+
+    // Amazon S3
+    compile 'com.amazonaws:aws-android-sdk-s3:2.6.+'
+
+    testCompile 'junit:junit:4.12'
+}

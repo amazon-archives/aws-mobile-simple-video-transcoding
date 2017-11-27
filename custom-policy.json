@@ -1,0 +1,59 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudformation:*"
+            ],
+            "Resource": [
+                "arn:aws:cloudformation:*:*:stack/VideoTranscoderLambdaStack/*",
+                "arn:aws:cloudformation:*:*:stack/VideoTranscoderRolesStack/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObjectAcl"
+            ],
+            "Resource": "arn:aws:s3:::*-mobilehub-*/*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutBucketNotification"
+            ],
+            "Resource": "arn:aws:s3:::*-mobilehub-*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:AttachRolePolicy",
+                "iam:CreateRole",
+                "iam:DeleteRole",
+                "iam:DeleteRolePolicy",
+                "iam:DetachRolePolicy",
+                "iam:PassRole",
+                "iam:PutRolePolicy"
+            ],
+            "Resource": [
+                "arn:aws:iam::*:role/TranscoderPipelineRole*",
+                "arn:aws:iam::*:role/TranscoderLambdaExecutionRole*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "lambda:*"
+            ],
+            "Resource": "arn:aws:lambda:*:*:function:TranscoderJobSubmitter"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "elastictranscoder:*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}

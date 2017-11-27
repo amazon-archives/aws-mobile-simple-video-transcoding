@@ -1,0 +1,41 @@
+body {
+  background: #fafafa;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #333;
+}
+
+.main {
+  margin: 10px auto 0 auto;
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 30px;
+  background-color: #eee;
+  border-radius: 6px;
+  padding: 20px;
+  display: table;
+}
+
+.error {
+  color: #FF0000;
+  text-align: center;
+  margin: 10px;
+  display: block;
+}
+
+.video {
+  height: 400px;
+  margin: 0 auto 0 auto;
+  display: block;
+}
+
+.coming-soon {
+  color: #333333;
+  text-align: left;
+  display: block;
+}
+
+.now-playing {
+  color: #333333;
+  text-align: left;
+  display: block;
+}

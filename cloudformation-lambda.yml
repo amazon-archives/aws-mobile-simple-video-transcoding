@@ -1,0 +1,54 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description: Mobile Hub project extension for Video Transcoding.
+
+Parameters:
+  LambdaExecutionRoleARN:
+    Description: Lambda execution role ARN.
+    Type: String
+  DeploymentsS3Bucket:
+    Description: Deployments S3 bucket.
+    Type: String
+  UserFilesS3Bucket:
+    Description: User Data Storage S3 bucket.
+    Type: String
+  TranscoderPipelineID:
+    Description: Elastic Transcoder Pipeline ID.
+    Type: String
+
+Resources:
+  TranscoderJobSubmitter:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: TranscoderJobSubmitter
+      Handler: index.handler
+      Runtime: nodejs6.10
+      Role:
+        Ref: LambdaExecutionRoleARN
+      Code:
+        S3Bucket:
+          Ref: DeploymentsS3Bucket
+        S3Key: "lambda.zip"
+      Environment:
+        Variables:
+          PIPELINE_ID:
+            Ref: TranscoderPipelineID
+      Timeout: 10
+  LambdaInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !GetAtt
+        - TranscoderJobSubmitter
+        - Arn
+      Action: 'lambda:InvokeFunction'
+      Principal: s3.amazonaws.com
+      SourceAccount: !Ref 'AWS::AccountId'
+      SourceArn:
+        'Fn::Join':
+          - ':'
+          - - 'arn:aws:s3::'
+            - Ref: UserFilesS3Bucket
+Outputs:
+  TranscoderLambdaARN:
+    Value:
+      Fn::GetAtt: TranscoderJobSubmitter.Arn
