@@ -484,17 +484,11 @@ if [ $? -ne 0 ]; then
 fi
 
 cmd="aws --profile ${profile} s3 cp ./example-video.mp4 s3://${userFilesBucket}/uploads/"
-echo "\nTo copy file to S3 bucket...\n${cmd}"
+echo "\nTo use AWS CLI to copy a file to S3 bucket...\n${cmd}"
 
-# TODO: Host sample video file
-# echo "\nCopying example video file to S3..."
-# echo "\nEXECUTE> ${cmd}"
-# ${cmd}
-
-# if [ $? -ne 0 ]; then
-#  echo "\nERROR: Unable to copy file to S3.\n"
-#  exit -1
-#fi
+echo "\nOr, use the following script to copy a file to S3...\n./upload.sh ./example-video.mp4"
+echo "aws --profile ${profile} s3 cp \$1 s3://${userFilesBucket}/uploads/" > upload.sh
+chmod a+x upload.sh
 
 echo "\nDONE -- SUCCESS\n"
 
