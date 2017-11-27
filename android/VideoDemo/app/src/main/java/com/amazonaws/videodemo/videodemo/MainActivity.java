@@ -415,7 +415,7 @@ public class MainActivity extends AppCompatActivity implements OnPreparedListene
             s3.setRegion(Region.getRegion(region));
             final TransferUtility transferUtility =
                     new TransferUtility(s3, getApplicationContext());
-            final String objectKey = "private/" + userIdentity + "/" + (new Date()).getTime();
+            final String objectKey = "private/" + userIdentity + "/" + (new Date()).getTime() + ".mp4";
             final TransferObserver observer = transferUtility.upload(
                     bucket,
                     objectKey,
