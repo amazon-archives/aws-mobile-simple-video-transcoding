@@ -357,6 +357,7 @@ If you'd like to edit your AWS Lambda function, you can follow this link:
 
     cd website
     npm install --save-dev
+    bower install --save-dev
 
 #### Build website
 
