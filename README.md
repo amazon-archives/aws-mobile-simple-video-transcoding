@@ -14,6 +14,7 @@ This project includes a demo Android Mobile App project which uploads video file
 * AWS Account - If you do not already have an account, following any of the AWS management console links below will prompt you to setup an account.
 * [NPM](https://www.npmjs.com/) - for building demo website
 * [Gulp](https://gulpjs.com/) - for building demo website
+* [Bower](https://bower.io/) - for building demo website
 
 ## Steps
 
