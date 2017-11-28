@@ -442,6 +442,10 @@ When you first start the app, it will attempt to read the index of available vid
 
 Click the '+' button to capture a video file to upload. This will upload the file to the 'userfiles' Amazon S3 bucket. It will trigger the AWS Lambda function that creates a job in Amazon Elastic Transcoder. The lambda function will also create a new record in the content index file (content/index.json) in your 'hosting' Amazon S3 bucket. The app will read the new index file and play the new video file after it has been transcoded to HLS (HTTP Live Streaming) format.
 
+Alternatively, you can use the generated 'upload.sh' script to upload a video file to your 'userfiles' S3 bucket like this...
+
+    ./upload.sh example-video.mp4
+
 ## Talk to Us
 
 * [AWS Mobile Developer Forum - https://forums.aws.amazon.com/forum.jspa?forumID=88](https://forums.aws.amazon.com/forum.jspa?forumID=88)
