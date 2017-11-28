@@ -28,7 +28,7 @@ lambdaStackName="VideoTranscoderLambdaStack"
 echo "\nChecking AWS CLI installation..."
 cmd="aws --version"
 echo "\nEXECUTE> ${cmd}\n"
-`${cmd}`
+${cmd}
 
 if [ $? -ne 0 ]; then
   echo "\nERROR: AWS CLI is not installed.\n\nPlease install it using instructions here:\nhttp://docs.aws.amazon.com/cli/latest/userguide/installing.html\n"
@@ -36,6 +36,19 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "\nAWS CLI is installed."
+
+echo "\nChecking JQ installation..."
+cmd="which jq"
+echo "\nEXECUTE> ${cmd}\n"
+${cmd}
+
+if [ $? -ne 0 ]; then
+  echo "\nERROR: JQ is not installed.\n\nPlease install it using instructions here:\nhttps://stedolan.github.io/jq/\n"
+  exit -1
+fi
+
+echo "\nJQ is installed."
+
 
 if [ "" = "$1" ]; then
   echo "\nERROR: You must specify an AWS Mobile Hub project ID.\n\nListing Mobile Hub projects...";

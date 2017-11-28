@@ -12,6 +12,7 @@ This project includes a demo Android Mobile App project which uploads video file
 
 * Mac OSX - The extension setup script was built for Mac OSX. It uses 'jq' to parse JSON output from the AWS CLI. It may work on other platforms with minor modification.
 * AWS Account - If you do not already have an account, following any of the AWS management console links below will prompt you to setup an account.
+* [JQ](https://stedolan.github.io/jq/) - for parsing JSON results from AWS CLI
 * [NPM](https://www.npmjs.com/) - for building demo website
 * [Gulp](https://gulpjs.com/) - for building demo website
 * [Bower](https://bower.io/) - for building demo website
