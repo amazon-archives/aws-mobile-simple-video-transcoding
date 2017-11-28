@@ -66,3 +66,6 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "\nDONE -- SUCCESS\n"
+
+consoleUrl="https://console.aws.amazon.com/mobilehub/home?#/${hubProjectId}/build/cdn"
+open ${consoleUrl}
