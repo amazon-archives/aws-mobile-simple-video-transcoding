@@ -112,6 +112,100 @@ if [ $? -ne 0 ]; then
   exit -1
 fi
 
+cmd="aws --profile ${profile} mobile export-bundle --project-id ${hubProjectId} --platform ANDROID --bundle-id app-config --query downloadUrl"
+
+echo "\nFetching Mobile App configuration URL..."
+echo "\nEXECUTE> ${cmd}"
+appConfigURL=`${cmd}`
+appConfigURL=${appConfigURL//\"}
+
+if [ $? -ne 0 ]; then
+  echo "\nERROR: Unable to export app-config bundle.\n"
+  exit -1
+fi
+
+echo "\nApp Configuration Bundle URL : ${appConfigURL}"
+
+cmd="wget -O awsconfiguration.zip ${appConfigURL}"
+
+echo "\nDownloading Mobile App configuration bundle..."
+echo "\nEXECUTE> ${cmd}"
+${cmd}
+
+if [ $? -ne 0 ]; then
+  echo "\nERROR: Unable to download Mobile App configuration bundle.\n"
+  exit -1
+fi
+
+cmd="unzip -o awsconfiguration.zip"
+
+echo "\nUnzipping Mobile App configuration bundle..."
+echo "\nEXECUTE> ${cmd}"
+${cmd}
+
+if [ $? -ne 0 ]; then
+  echo "\nERROR: Unable to unzip Mobile App configuration bundle.\n"
+  exit -1
+fi
+
+cmd="cp awsconfiguration.json android/VideoDemo/app/src/main/res/raw/awsconfiguration.json"
+
+echo "\nCopying Mobile App configuration to demo app folder..."
+echo "\nEXECUTE> ${cmd}"
+${cmd}
+
+if [ $? -ne 0 ]; then
+  echo "\nERROR: Unable to copy Mobile App configuration JSON to demo app folder.\n"
+  exit -1
+fi
+
+cmd="aws --profile ${profile} mobile export-bundle --project-id ${hubProjectId} --platform JAVASCRIPT --bundle-id app-config --query downloadUrl"
+
+echo "\nFetching Website configuration URL..."
+echo "\nEXECUTE> ${cmd}"
+webConfigURL=`${cmd}`
+webConfigURL=${webConfigURL//\"}
+
+if [ $? -ne 0 ]; then
+  echo "\nERROR: Unable to export app-config bundle.\n"
+  exit -1
+fi
+
+echo "\nWebsite Configuration Bundle URL : ${webConfigURL}"
+
+cmd="wget -O aws-exports.zip ${webConfigURL}"
+
+echo "\nDownloading Website configuration bundle..."
+echo "\nEXECUTE> ${cmd}"
+${cmd}
+
+if [ $? -ne 0 ]; then
+  echo "\nERROR: Unable to download Website configuration bundle.\n"
+  exit -1
+fi
+
+cmd="unzip -o aws-exports.zip"
+
+echo "\nUnzipping Website configuration bundle..."
+echo "\nEXECUTE> ${cmd}"
+${cmd}
+
+if [ $? -ne 0 ]; then
+  echo "\nERROR: Unable to unzip Website configuration bundle.\n"
+  exit -1
+fi
+
+cmd="cp aws-config.js website/app/scripts/aws-config.js"
+
+echo "\nCopying Website configuration to demo website folder..."
+echo "\nEXECUTE> ${cmd}"
+${cmd}
+
+if [ $? -ne 0 ]; then
+  echo "\nERROR: Unable to copy Website configuration to demo website folder.\n"
+  exit -1
+fi
+
 echo "Copy AWS CloudFormation template to S3..."
 cmd="aws --profile ${profile} s3 cp ./${rolesTemplateFilename} s3://${deploymentsBucket} --acl public-read"
 echo "\nEXECUTE> ${cmd}"
@@ -399,100 +493,6 @@ ${cmd}
 
 if [ $? -ne 0 ]; then
   echo "\nERROR: Unable to setup S3 notification.\n"
-  exit -1
-fi
-
-cmd="aws --profile ${profile} mobile export-bundle --project-id ${hubProjectId} --platform ANDROID --bundle-id app-config --query downloadUrl"
-
-echo "\nFetching Mobile App configuration URL..."
-echo "\nEXECUTE> ${cmd}"
-appConfigURL=`${cmd}`
-appConfigURL=${appConfigURL//\"}
-
-if [ $? -ne 0 ]; then
-  echo "\nERROR: Unable to export app-config bundle.\n"
-  exit -1
-fi
-
-echo "\nApp Configuration Bundle URL : ${appConfigURL}"
-
-cmd="wget -O awsconfiguration.zip ${appConfigURL}"
-
-echo "\nDownloading Mobile App configuration bundle..."
-echo "\nEXECUTE> ${cmd}"
-${cmd}
-
-if [ $? -ne 0 ]; then
-  echo "\nERROR: Unable to download Mobile App configuration bundle.\n"
-  exit -1
-fi
-
-cmd="unzip -o awsconfiguration.zip"
-
-echo "\nUnzipping Mobile App configuration bundle..."
-echo "\nEXECUTE> ${cmd}"
-${cmd}
-
-if [ $? -ne 0 ]; then
-  echo "\nERROR: Unable to unzip Mobile App configuration bundle.\n"
-  exit -1
-fi
-
-cmd="cp awsconfiguration.json android/VideoDemo/app/src/main/res/raw/awsconfiguration.json"
-
-echo "\nCopying Mobile App configuration to demo app folder..."
-echo "\nEXECUTE> ${cmd}"
-${cmd}
-
-if [ $? -ne 0 ]; then
-  echo "\nERROR: Unable to copy Mobile App configuration JSON to demo app folder.\n"
-  exit -1
-fi
-
-cmd="aws --profile ${profile} mobile export-bundle --project-id ${hubProjectId} --platform JAVASCRIPT --bundle-id app-config --query downloadUrl"
-
-echo "\nFetching Website configuration URL..."
-echo "\nEXECUTE> ${cmd}"
-webConfigURL=`${cmd}`
-webConfigURL=${webConfigURL//\"}
-
-if [ $? -ne 0 ]; then
-  echo "\nERROR: Unable to export app-config bundle.\n"
-  exit -1
-fi
-
-echo "\nWebsite Configuration Bundle URL : ${webConfigURL}"
-
-cmd="wget -O aws-exports.zip ${webConfigURL}"
-
-echo "\nDownloading Website configuration bundle..."
-echo "\nEXECUTE> ${cmd}"
-${cmd}
-
-if [ $? -ne 0 ]; then
-  echo "\nERROR: Unable to download Website configuration bundle.\n"
-  exit -1
-fi
-
-cmd="unzip -o aws-exports.zip"
-
-echo "\nUnzipping Website configuration bundle..."
-echo "\nEXECUTE> ${cmd}"
-${cmd}
-
-if [ $? -ne 0 ]; then
-  echo "\nERROR: Unable to unzip Website configuration bundle.\n"
-  exit -1
-fi
-
-cmd="cp aws-config.js website/app/scripts/aws-config.js"
-
-echo "\nCopying Website configuration to demo website folder..."
-echo "\nEXECUTE> ${cmd}"
-${cmd}
-
-if [ $? -ne 0 ]; then
-  echo "\nERROR: Unable to copy Website configuration to demo website folder.\n"
   exit -1
 fi
 

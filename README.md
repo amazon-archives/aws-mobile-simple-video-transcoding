@@ -189,7 +189,7 @@ Choose a project name and region. The following command will create the project 
 
 Note: Alternatively, you can run the 'create-project.sh' script contained in this repository.
 
-        aws mobile create-project --snapshot-id 2nn2zch3ecsx56 --name "Video Transcoder" --project-region us-east-1
+        aws mobile create-project --snapshot-id yvsue7ksnvy9fo --name "Video Transcoder" --project-region us-east-1
 
 The command will output information about your project.
 

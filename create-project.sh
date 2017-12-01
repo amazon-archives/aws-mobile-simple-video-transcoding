@@ -13,4 +13,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-aws --profile default mobile create-project --snapshot-id ct5a5aqqhhdant --name "Video Transcoder" --project-region us-east-1
+aws --profile default mobile create-project --snapshot-id yvsue7ksnvy9fo --name "Video Transcoder" --project-region us-east-1
